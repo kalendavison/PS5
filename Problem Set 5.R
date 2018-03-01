@@ -63,14 +63,7 @@ setValidity("Simpson", function(object){
 
 
 
-setGeneric("IntegrateIt", #creates a generic function in S4 that takes objects of class "Simpson" or "Trapezoid" as arguments
-           function(object = "Simpson") {
-             standardGeneric("IntegrateIt")
-           } )
-
-setGeneric("IntegrateIt", #creates a generic function in S4 that takes objects of class "Simpson" or "Trapezoid" as arguments
-           function(object = "Trapezoid") {
-             standardGeneric("IntegrateIt")
-           } )
 
 IntegrateIt
+
+#one generic and two methods
