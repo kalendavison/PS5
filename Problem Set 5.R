@@ -67,7 +67,7 @@ IntegrateIt <- function(xvalues, yvalues, start, end, rule){
   h = height
 
   if (rule == "Trapezoid"){
-    Trap = (h/2)*(2*sum(yvalues)-yvalues[1]-yvalues[length(yvalues)]) 
+    Trap = (h/2)*((2*sum(yvalues))-yvalues[1]-yvalues[length(yvalues)]) 
     return (c(Trap, xvalues, yvalues, rule)) }
   
   if (rule == "Simpson"){
@@ -83,7 +83,7 @@ IntegrateIt <- function(xvalues, yvalues, start, end, rule){
   }
 
 
-IntegrateIt(1:20, 21:40, 1, 20, "Trapezoid")
+IntegrateIt(1:20, 21:40, 1, 20, "Simpson")
 
 #one generic and two methods
 
