@@ -7,14 +7,12 @@ setClass(Class = "Trapezoid",
          representation = representation(
            xvalues = "integer",
            yvalues = "integer",
-           range = "integer",
-           rule = "character"
+           area = "numeric"
          ),
          prototype = prototype(
            xvalues = c(),
            yvalues = c(),
-           range = c(),
-           rule = c()
+           area = c()
          )
 )
 
@@ -36,14 +34,12 @@ setClass(Class = "Simpson",
          representation = representation(
            xvalues = "integer",
            yvalues = "integer",
-           range = "integer",
-           rule = "character"
+           area = "numeric"
          ),
          prototype = prototype(
            xvalues = c(),
            yvalues = c(),
-           range = c(),
-           rule = c()
+           area = c()
          )
 )
 
@@ -64,6 +60,31 @@ setValidity("Simpson", function(object){
 
 
 
-IntegrateIt
+IntegrateIt <- function(xvalues, yvalues, start, end, rule){
+  start = min(xvalues)
+  end = max(xvalues)
+  height = (end - start) / (length(xvalues) - 1)
+  h = height
+
+  if (rule == "Trapezoid"){
+    Trap = (h/2)*(2*sum(yvalues)-yvalues[1]-yvalues[length(yvalues)]) 
+    return (c(Trap, xvalues, yvalues, rule)) }
+  
+  if (rule == "Simpson"){
+    first = yvalues[1]
+    last = yvalues[length(yvalues)]
+    second_last = 4*(yvalues[length(yvalues)-1])    
+    middle = yvalues[2:(length(xvalues)-1)]
+    odd_middle = 4*(middle[seq(1,length(middle),2)])
+    even_middle = 2*(middle[seq(2,length(middle),2)])
+
+    Simp = (h/3) * (sum(first+odd_middle+even_middle+second_last+last))
+      return (c(Simp, xvalues, yvalues, rule)) }
+  }
+
+
+IntegrateIt(1:20, 21:40, 1, 20, "Trapezoid")
 
 #one generic and two methods
+
+
