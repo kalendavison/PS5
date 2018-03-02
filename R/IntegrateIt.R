@@ -28,8 +28,8 @@ setGeneric(name="integrateIt",
 )
 
 #' @export
-setMethod(f="allSquares",
-          definition=function(xvalues, yvalues, start, end, rule...){
+setMethod("integrateIt",
+          definition=function(xvalues, yvalues, start, end, rule){
             start = min(xvalues)
             end = max(xvalues)
             height = (end - start) / (length(xvalues) - 1)
@@ -37,7 +37,7 @@ setMethod(f="allSquares",
             
             if (rule == "Trapezoid"){
               Trap = (h/2)*((2*sum(yvalues))-yvalues[1]-yvalues[length(yvalues)]) 
-              return (new("Trapezoid", xvalues = xvalues, yvalues = yvalues, area = Trap_area))
+              return (new("Trapezoid", xvalues = xvalues, yvalues = yvalues, area = Trap_area)) }
               
             if (rule == "Simpson"){
               first = yvalues[1]
@@ -49,6 +49,12 @@ setMethod(f="allSquares",
               
               Simp_area = (h/3) * (sum(first+odd_middle+even_middle+second_last+last))
               return (new("Simpson", xvalues = xvalues, yvalues = yvalues, area = Simp_area)) }
-            }
-          
+            })
 
+#' @export
+setGeneric("print")
+
+#' @export
+setMethod("print",
+          definition = function(x) {
+  
