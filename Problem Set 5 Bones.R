@@ -32,11 +32,11 @@ integrateIt <- function(xvalues, yvalues, start, end, rule){
 integrateIt(1:10, 11:20, 1, 20, "Simpson") 
 integrateIt(1:10, 11:20, 1, 20, "Trapezoid") #formatting is good on tests but results are not the same suggesting inaccuracy
 
-
+### Create a "Trapezoid" class with three slots with no default values
 setClass(Class = "Trapezoid",
          representation = representation(
-           xvalues = "integer",
-           yvalues = "integer",
+           xvalues = "numeric",
+           yvalues = "numeric",
            area = "numeric"
          ),
          prototype = prototype(
@@ -46,8 +46,9 @@ setClass(Class = "Trapezoid",
          )
 )
 
+# Validity function for Trapezoid class
 setValidity("Trapezoid", function(object){ 
-  areaLength = (length(object@area == 1))
+  areaLength = (length(object@area == 1)) 
   valuesLength = (length(object@xvalues) == length(object@yvalues))
   
   if(!areaLength){
@@ -58,14 +59,20 @@ setValidity("Trapezoid", function(object){
   }
 })
 
-new("Trapezoid", xvalues = 1:10, yvalues= 11:20, area = 265)
+new("Trapezoid", xvalues = 1:10, yvalues= 11:20, area = 265) #works as expected
 
+### Initialize Trapezoid method
+setMethod("initialize", "Trapezoid", function(.Object, ...) { 
+  value = callNextMethod()
+  validObject(value)
+  return(value)
+})
 
-
+### Create a "Simpson" class with three different slots and no default values
 setClass(Class = "Simpson",
          representation = representation(
-           xvalues = "integer",
-           yvalues = "integer",
+           xvalues = "numeric",
+           yvalues = "numeric",
            area = "numeric"
          ),
          prototype = prototype(
@@ -75,7 +82,7 @@ setClass(Class = "Simpson",
          )
 )
 
-
+### Validity function for Simpson class
 setValidity("Simpson", function(object){ 
   areaLength = (length(object@area == 1))
   valuesLength = (length(object@xvalues) == length(object@yvalues))
@@ -88,15 +95,18 @@ setValidity("Simpson", function(object){
   }
 })
 
-new("Simpson", xvalues = 1:10, yvalues= 11:20, area = 265)
+new("Simpson", xvalues = 1:10, yvalues= 11:20, area = 265) #works as expected
 
-#one generic and two methods
-
-
-
-
-setMethod("initialize", "Trapezoid", function(.Object, ...) { #initilize method 
+# Initialize Simpson method
+setMethod("initialize", "Simpson", function(.Object, ...) {  
   value = callNextMethod()
   validObject(value)
   return(value)
 })
+
+### necessary to make another class for inputs???
+
+setGeneric("integrateIt", 
+           function(object = "?") {
+             standardGeneric("integrateIt")
+           } )
