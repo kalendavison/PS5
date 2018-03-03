@@ -105,7 +105,3 @@ setMethod("initialize", "Simpson", function(.Object, ...) {
 })
 
 
-setGeneric("integrateIt", 
-           function(object = "?") {
-             standardGeneric("integrateIt")
-           } )
