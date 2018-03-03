@@ -28,6 +28,74 @@ setGeneric(name="integrateIt",
 )
 
 #' @export
+setClass(Class = "Trapezoid",
+         representation = representation(
+           xvalues = "numeric",
+           yvalues = "numeric",
+           area = "numeric"
+         ),
+         prototype = prototype(
+           xvalues = c(),
+           yvalues = c(),
+           area = c()
+         )
+         )
+
+#' @export
+setValidity("Trapezoid", function(object){ 
+  areaLength = (length(object@area == 1)) 
+  valuesLength = (length(object@xvalues) == length(object@yvalues))
+  
+  if(!areaLength){
+    return("Trapezoid not valid! Area must be of length 1.")
+  }
+  if(!valuesLength){
+    return("Trapezoid is not valid! xvalues and yvalues must be of the same length.")
+  }
+})
+
+#' @export
+setMethod("initialize", "Trapezoid", function(.Object, ...) { 
+  value = callNextMethod()
+  validObject(value)
+  return(value)
+})
+
+#' @export
+setClass(Class = "Simpson",
+         representation = representation(
+           xvalues = "numeric",
+           yvalues = "numeric",
+           area = "numeric"
+         ),
+         prototype = prototype(
+           xvalues = c(),
+           yvalues = c(),
+           area = c()
+         )
+)
+
+#' @export
+setValidity("Simpson", function(object){ 
+  areaLength = (length(object@area == 1))
+  valuesLength = (length(object@xvalues) == length(object@yvalues))
+  
+  if(!areaLength){
+    return("Simpson not valid! Area must be of length 1.")
+  }
+  if(!valuesLength){
+    return("Simpson is not valid! xvalues and yvalues must be of the same length.")
+  }
+})
+
+#' @export
+setMethod("initialize", "Simpson", function(.Object, ...) {  
+  value = callNextMethod()
+  validObject(value)
+  return(value)
+})
+
+#' @export
 setMethod("integrateIt",
           definition=function(xvalues, yvalues, start, end, rule){
             start = min(xvalues)
@@ -36,7 +104,7 @@ setMethod("integrateIt",
             h = height
             
             if (rule == "Trapezoid"){
-              Trap = (h/2)*((2*sum(yvalues))-yvalues[1]-yvalues[length(yvalues)]) 
+              Trap_area = (h/2)*((2*sum(yvalues))-yvalues[1]-yvalues[length(yvalues)]) 
               return (new("Trapezoid", xvalues = xvalues, yvalues = yvalues, area = Trap_area)) }
               
             if (rule == "Simpson"){
@@ -54,7 +122,6 @@ setMethod("integrateIt",
 #' @export
 setGeneric("print")
 
-#' @export
-setMethod("print",
-          definition = function(x) {
-  
+setwd("/Users/kalendavison/Desktop/Applied Statistical Programming/GitHub/PS5")
+current.code <- as.package("PS5")
+load_all(current.code)  

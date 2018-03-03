@@ -104,7 +104,6 @@ setMethod("initialize", "Simpson", function(.Object, ...) {
   return(value)
 })
 
-### necessary to make another class for inputs???
 
 setGeneric("integrateIt", 
            function(object = "?") {
