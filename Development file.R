@@ -38,4 +38,4 @@ getwd()
 build(current.code, path=getwd()) # Build a local copy for you to share
 
 ?integrateIt #help file works
-integrateIt(1:10, 2:19, 2, 5, "Trapezoid")
+integrateIt(1:10, 2:19, 2, 5, "Trapezoid") #returns an error
