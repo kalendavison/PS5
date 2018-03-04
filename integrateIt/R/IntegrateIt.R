@@ -27,23 +27,22 @@ setGeneric(name="integrateIt",
 #' @export
 setMethod("integrateIt",
           definition=function(xvalues, yvalues, start, end, rule){
-            start = min(xvalues)
-            end = max(xvalues)
+            xvalues = xvalues[start]:xvalues[end]
+            yvalues = yvalues[start]:yvalues[end]
             height = (end - start) / (length(xvalues) - 1)
             h = height
             
             if (rule == "Trapezoid"){
-              Trap_area = (h/2)*((2*sum(yvalues))-yvalues[1]-yvalues[length(yvalues)]) 
+              Trap_area = (h/2)*((2*(sum(yvalues))-yvalues[1]-yvalues[length(yvalues)])) 
               return (new("Trapezoid", xvalues = xvalues, yvalues = yvalues, area = Trap_area)) }
               
             if (rule == "Simpson"){
               first = yvalues[1]
               last = yvalues[length(yvalues)]
-              second_last = 4*(yvalues[length(yvalues)-1])    
               middle = yvalues[2:(length(xvalues)-1)]
               odd_middle = 4*(middle[seq(1,length(middle),2)])
               even_middle = 2*(middle[seq(2,length(middle),2)])
               
-              Simp_area = (h/3) * (sum(first+odd_middle+even_middle+second_last+last))
+              Simp_area = (h/3) * (sum(first, odd_middle, even_middle, last))
               return (new("Simpson", xvalues = xvalues, yvalues = yvalues, area = Simp_area)) }
             })
