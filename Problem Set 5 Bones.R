@@ -105,3 +105,4 @@ setMethod("initialize", "Simpson", function(.Object, ...) {
 })
 
 
+integrateIt(1:10, 11:20, 1, 10, "Simpson")
