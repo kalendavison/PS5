@@ -6,13 +6,13 @@
 #'
 #' @return A numeric
 #' @author Kalen Davison
-#' @note Please Work 
+#' @note Should return only the integral approximation
 #' @examples
 #' 
 
 #' @seealso \code{\link{integrateIt}}
 #' @rdname printfunction
-#' @aliases 
+#' @aliases integrateIt
 #' @export
 
 setMethod("print", "Trapezoid",

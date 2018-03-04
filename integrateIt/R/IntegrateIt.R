@@ -6,7 +6,7 @@
 #' @param yvalues A numeric object with the same dimensionality as \code{xvalues}.
 #' @param start A numeric object of length 1
 #' @param end A numeric object of length 1
-#' @param rule A character string equal to either "Trap" or "Simpson"
+#' @param rule A character string equal to either "Trapezoid" or "Simpson"
 #'
 #' @return An object of class Trapezoid or Simpson containing
 #'  \item{xvalues}{The first object input}
@@ -15,10 +15,7 @@
 #' @author Kalen J. Davison
 #' @note The estimate may vary depending on the method of integration chosen
 #' @examples
-#' 
-#' myX <- c(1:10) 
-#' myY <- c(11:20) 
-#' integrateIT(myX, myY, "Trapezoid")
+
 #' @rdname integrateIt
 #' @aliases integrateIt
 #' @export

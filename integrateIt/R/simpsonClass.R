@@ -1,4 +1,4 @@
-#' Creates a Trapezoid class
+#' Creates a Simpson class
 #'
 #' 
 #'
@@ -8,15 +8,15 @@
 #'
 #' @return creates Simpson Class
 #' @author Kalen Davison
-#' @note Creates Trapezoid class with three slots
+#' @note Creates Simpson class with three slots
 #' @examples
 #' 
 
 #' @seealso \code{\link{integrateIt}}
-#' @rdname trapezoidclass
-#' @aliases 
+#' @rdname simpsonClass
+#' @aliases integrateIt
 #' @export
-setClass(Class = "Trapezoid",
+setClass(Class = "Simpson",
          representation = representation(
            xvalues = "numeric",
            yvalues = "numeric",
@@ -30,20 +30,20 @@ setClass(Class = "Trapezoid",
 )
 
 #' @export
-setValidity("Trapezoid", function(object){ 
-  areaLength = (length(object@area == 1)) 
+setValidity("Simpson", function(object){ 
+  areaLength = (length(object@area == 1))
   valuesLength = (length(object@xvalues) == length(object@yvalues))
   
   if(!areaLength){
-    return("Trapezoid not valid! Area must be of length 1.")
+    return("Simpson not valid! Area must be of length 1.")
   }
   if(!valuesLength){
-    return("Trapezoid is not valid! xvalues and yvalues must be of the same length.")
+    return("Simpson is not valid! xvalues and yvalues must be of the same length.")
   }
 })
 
 #' @export
-setMethod("initialize", "Trapezoid", function(.Object, ...) { 
+setMethod("initialize", "Simpson", function(.Object, ...) {  
   value = callNextMethod()
   validObject(value)
   return(value)
