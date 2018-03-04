@@ -31,9 +31,10 @@ The estimate may vary depending on the method of integration chosen
 }
 \examples{
 
-myX <- c(1:10) 
-myY <- c(11:20) 
-integrateIT(myX, myY, "Trapezoid")
+myX <- c(1:20) 
+myY <- c(21:40) 
+integrateIt(myX, myY, 3, 18, "Trapezoid")
+integrateIt(myX, myY, 3, 18, "Simpson")
 }
 \author{
 Kalen J. Davison
